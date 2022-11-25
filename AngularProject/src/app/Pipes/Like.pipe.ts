@@ -14,6 +14,7 @@ export class LikePipe implements PipeTransform {
       return "1 Like";
     }
     return `${+value} Likes`;
+
   }
 
 }
