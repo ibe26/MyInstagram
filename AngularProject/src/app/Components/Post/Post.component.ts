@@ -1,6 +1,8 @@
 import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { IPost } from 'src/app/Interfaces/IPost';
+import { PostService } from 'src/app/Services/Post.service';
+import { LikePipe } from 'src/app/Pipes/Like.pipe';
 
 @Component({
   selector: 'app-Post',
@@ -12,6 +14,7 @@ export class PostComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 
@@ -45,6 +48,7 @@ export class PostComponent implements OnInit {
   public SwitchCommentHovered() {
     this._commentHovered = !this.IsCommentHovered;
   }
+
 
 
   //#region

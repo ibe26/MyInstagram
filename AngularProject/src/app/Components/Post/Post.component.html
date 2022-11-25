@@ -9,14 +9,14 @@
       <div class="col-3 mt-2">
         <strong>
           <a href="">
-            {{Post.Owner}}
+            {{Post.owner}}
           </a>
         </strong>
       </div>
     </div>
   </div>
 
-  <img class="card-img-top postImage" src={{Post.Image}} alt="Card image cap" />
+  <img class="card-img-top postImage" src={{Post.image}} alt="Card image cap" />
   <div class="card-body">
 
     <h5 class="card-title">
@@ -50,21 +50,22 @@
 
       </div>
     </h5>
-    <h5 class="card-title">{{Post.Title}}</h5>
+    <h5 class="card-title">{{Post.title}}</h5>
     <div>
       <div class="row">
         <div class="col-6">
-          <h6 class="card-text text-muted small">{{Post.likeCount| number:'1.0':'en-US'}} Likes</h6>
+          <h6 class="card-text text-muted small">{{Post.likeCount| number:'1.0':'en-US'|Like}}</h6>
         </div>
         <div class="col-6">
-          <span class="postDate">{{Post.Date|date}}</span>
+          <span class="postDate">{{Post.date|date}}</span>
 
         </div>
       </div>
 
     </div>
 
-    <p class="card-text">{{Post.Text}}
+    <p class="card-text">{{Post.text}}
     </p>
   </div>
 </div>
+
