@@ -1,4 +1,5 @@
 import { IComment } from "./IComment"
+import { IUserBase } from "./IUser"
 
 export interface IPost{
   id:number,
@@ -9,5 +10,5 @@ export interface IPost{
   comments:IComment[],
   image:string,
   date:number,
-  whoLiked:any
+  whoLiked:Array<IUserBase>
 }

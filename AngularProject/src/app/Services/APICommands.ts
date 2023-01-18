@@ -4,11 +4,11 @@ export class APICommands {
     return `https://localhost:44380/api`;
   }
   public static Post(attribute: string): string {
-    return APICommands.Url + `/${attribute}` + `/add`;
+    return APICommands.BaseUrl + `/${attribute}` + `/add`;
   }
 
   public static PostArray(attribute: string): string {
-    return APICommands.Url + `/${attribute}` + `/addList`;
+    return APICommands.BaseUrl + `/${attribute}` + `/addList`;
 
   }
 
@@ -35,11 +35,11 @@ export class PostAPI extends APICommands {
 
   public static likePost(PostID: number, UserID: number): string {
     // /api/like?PostID=5&UserID=2
-    return APICommands.Url + `/like?PostID=${PostID}&UserID=${UserID}`;
+    return APICommands.Url("post") + `/like?PostID=${PostID}&UserID=${UserID}`;
   }
   public static unLikePost(PostID: number, UserID: number): string {
     // /api/unlike?PostID=5&UserID=2
-    return APICommands.Url + `/unlike?PostID=${PostID}&UserID=${UserID}`;
+    return APICommands.Url("post") + `/unlike?PostID=${PostID}&UserID=${UserID}`;
   }
 
 

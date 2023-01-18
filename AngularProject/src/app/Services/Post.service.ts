@@ -16,6 +16,17 @@ export class PostService {
     return this.http.get<Array<IPost>>(PostAPI.Get(_userID));
   }
 
+  public likePost(user:{userID:number,postID:number})
+  {
+    this.http.post(PostAPI.likePost(user.postID,user.userID),user).subscribe();
+  }
+
+  public unlikePost(user:{userID:number,postID:number})
+  {
+    this.http.post(PostAPI.unLikePost(user.postID,user.userID),user).subscribe();
+  }
+
+
 }
 
 
