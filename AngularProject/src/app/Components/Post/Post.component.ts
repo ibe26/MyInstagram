@@ -2,7 +2,7 @@ import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { IPost } from 'src/app/Interfaces/IPost';
 import { PostService } from 'src/app/Services/Post.service';
-import { IUserBase } from 'src/app/Interfaces/IUser';
+import { IUWH } from 'src/app/Interfaces/IUser';
 
 @Component({
   selector: 'app-Post',
@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
   private _isLiked: boolean=false;
   private _commentHovered: boolean = false;
 
-  private _userTest: IUserBase = {
+  private _userTest: IUWH = {
     userID: 1,
     nickname: 'boll4321'
   };

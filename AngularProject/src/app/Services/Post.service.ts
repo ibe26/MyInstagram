@@ -23,8 +23,6 @@ export class PostService {
   {
     this.http.post(PostAPI.unLikePost(user.postID,user.userID),user).subscribe();
   }
-
-
 }
 
 

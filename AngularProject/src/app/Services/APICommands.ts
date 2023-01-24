@@ -1,21 +1,23 @@
+import { IUserDTO, IUserToken } from "../Interfaces/IUser";
+
 export class APICommands {
 
-  protected static get BaseUrl(): string {
+  private static get BaseUrl(): string {
     return `https://localhost:44380/api`;
   }
   public static Post(attribute: string): string {
     return APICommands.BaseUrl + `/${attribute}` + `/add`;
   }
 
-  public static PostArray(attribute: string): string {
+  public static PostArray(attribute: any): string {
     return APICommands.BaseUrl + `/${attribute}` + `/addList`;
 
   }
 
-  protected static Url(attribute: string) {
+  protected static Url(attribute: any) {
     return APICommands.BaseUrl + `/${attribute}`;
   }
-  public static Get(attribute: string) {
+  public static Get(attribute: any) {
     return APICommands.Url(attribute);
   }
 
@@ -27,7 +29,7 @@ export class PostAPI extends APICommands {
 
   }
 
-  public static override Get(userID: any="") {
+  public static override Get(userID:number):string {
 
     return APICommands.Url("post" + `/${userID}`);
   }
@@ -42,5 +44,19 @@ export class PostAPI extends APICommands {
   }
 
 
+
+}
+
+export class UserAPI extends APICommands{
+  constructor(){
+    super();
+  }
+
+  public static override Get(UserID:number):string{
+    return APICommands.Url("user"+`/${UserID}`);
+  }
+  public static GetToken():string{
+    return APICommands.Get("user/login");
+  }
 
 }
