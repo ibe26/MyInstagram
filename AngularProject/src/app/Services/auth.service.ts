@@ -16,3 +16,5 @@ export class AuthService {
     return this.httpClient.post<IUserToken>(UserAPI.GetToken(),User);
   }
 }
+
+
