@@ -3,7 +3,7 @@ import { IUserBase } from "./IUser"
 
 export interface IPost{
   id:number,
-  owner:string,
+  nickname:string,
   title:string,
   text:string,
   likeCount:number,

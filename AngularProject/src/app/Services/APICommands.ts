@@ -27,10 +27,9 @@ export class PostAPI extends APICommands {
 
   }
 
-  public static override Get(userID: string) {
+  public static override Get(userID: any="") {
 
-    const _userID: number = +userID; //Doing such thing because typescript doesn't have method overloading.
-    return APICommands.Url("post" + `/${_userID}`);
+    return APICommands.Url("post" + `/${userID}`);
   }
 
   public static likePost(PostID: number, UserID: number): string {

@@ -12,7 +12,7 @@ export class PostListComponent implements OnInit {
   constructor(private postService:PostService) { }
 
   ngOnInit() {
-    this.postService.GetPosts(1).subscribe((data:Array<IPost>)=>{
+    this.postService.GetAllPosts().subscribe((data:Array<IPost>)=>{
       this.PostList = data.map((post: IPost) => {
         if (post.image === "" || post.image === null || post.image === undefined) {
           post.image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png';

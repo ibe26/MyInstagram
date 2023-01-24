@@ -7,7 +7,7 @@ export class LikePipe implements PipeTransform {
 
   transform(value: string|null): any {
 
-    if (value===null) {
+    if (value===null || +value===0) {
       return "No Likes";
     }
     else if (+value === 1) {
