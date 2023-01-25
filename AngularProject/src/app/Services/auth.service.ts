@@ -12,8 +12,11 @@ export class AuthService {
   public GetUser(UserID:any=""):Observable<IUserDTO>{
     return this.httpClient.get<IUserDTO>(UserAPI.Get(UserID));
   }
-  public Authorize(User:ILoginDTO):Observable<IUserToken>{
-    return this.httpClient.post<IUserToken>(UserAPI.GetToken(),User);
+  public Authorize(User:ILoginDTO):void{
+    this.httpClient.post<IUserToken>(UserAPI.GetToken(),User).subscribe((data:IUserToken)=>{
+      localStorage.setItem('UserLoggedIn',JSON.stringify(data));
+    });
+
   }
 }
 

@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit {
       email: 'ilkerberke13@gmail.com',
       password: 'testpass'
     };
-    this.authService.Authorize(user).subscribe(data=>{
-      console.log(data);
-    });
+    this.authService.Authorize(user);
   }
 }
