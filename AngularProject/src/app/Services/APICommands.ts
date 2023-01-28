@@ -29,18 +29,18 @@ export class PostAPI extends APICommands {
 
   }
 
-  public static override Get(userID:number):string {
+  public static override Get(userID:any=""):string {
 
     return APICommands.Url("post" + `/${userID}`);
   }
 
   public static likePost(PostID: number, UserID: number): string {
     // /api/like?PostID=5&UserID=2
-    return APICommands.Url("post") + `/like?PostID=${PostID}&UserID=${UserID}`;
+    return this.Get() + `/like?PostID=${PostID}&UserID=${UserID}`;
   }
   public static unLikePost(PostID: number, UserID: number): string {
     // /api/unlike?PostID=5&UserID=2
-    return APICommands.Url("post") + `/unlike?PostID=${PostID}&UserID=${UserID}`;
+    return this.Get() + `/unlike?PostID=${PostID}&UserID=${UserID}`;
   }
 
 
@@ -52,11 +52,16 @@ export class UserAPI extends APICommands{
     super();
   }
 
-  public static override Get(UserID:number):string{
+  public static override Get(UserID:any=""):string{
     return APICommands.Url("user"+`/${UserID}`);
   }
-  public static GetToken():string{
-    return APICommands.Get("user/login");
+  public static Register():string{
+    return this.Get()+"/register";
   }
-
+  public static GetToken():string{
+    return this.Get()+"/login";
+  }
+  public static Logout(UserID:number):string{
+    return this.Get()+`/logout/${UserID}`;
+  }
 }

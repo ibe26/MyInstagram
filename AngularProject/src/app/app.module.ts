@@ -11,6 +11,7 @@ import { LikePipe } from './Pipes/Like.pipe';
 import { LoginComponent } from './Components/Login/login.component';
 import { RegisterComponent } from './Components/Register/register.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
   const routes:Routes=[
     {path:'Home',component:PostListComponent},
@@ -33,7 +34,8 @@ import { RouterModule, Routes } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
