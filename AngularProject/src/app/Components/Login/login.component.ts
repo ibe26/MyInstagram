@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ILoginDTO } from 'src/app/Interfaces/IUser';
-import { AuthService } from 'src/app/Services/auth.service';
+import { AuthService } from 'src/app/Services/Auth.service';
 
 @Component({
   selector: 'app-login',

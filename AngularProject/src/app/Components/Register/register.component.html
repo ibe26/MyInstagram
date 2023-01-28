@@ -1,5 +1,27 @@
-<form>
-  <!-- <mat-form-field>
+<form [formGroup]="RegisterForm" (ngSubmit)="signinSubmit()">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>E-Mail</mat-label>
+      <input class="inputHeight" matInput placeholder="example@email.com" formControlName="email">
+    </mat-form-field>
+  </div>
 
-  </mat-form-field> -->
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input type="password" class="inputHeight" matInput placeholder="********" formControlName="password">
+    </mat-form-field>
+  </div>
+<div>
+    <mat-form-field hintLabel appearance="fill">
+      <mat-label>Enter your nickname</mat-label>
+      <input (change)="checkNickname()" class="inputHeight" matInput placeholder="MyCoolNickname_123" formControlName="nickname">
+      <mat-hint *ngIf="doesNicknameExist"><span style="font-size:small ;color:red;">*Nickname already exists!</span></mat-hint>
+    </mat-form-field>
+  </div>
+<div>
+  <button class="mt-1" type="submit" mat-raised-button color="primary" >Sign-In</button>
+</div>
 </form>
+
+

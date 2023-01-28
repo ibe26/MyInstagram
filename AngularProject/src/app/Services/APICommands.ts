@@ -17,9 +17,7 @@ export class APICommands {
   protected static Url(attribute: any) {
     return APICommands.BaseUrl + `/${attribute}`;
   }
-  public static Get(attribute: any) {
-    return APICommands.Url(attribute);
-  }
+
 
 }
 
@@ -29,9 +27,11 @@ export class PostAPI extends APICommands {
 
   }
 
-  public static override Get(userID:any=""):string {
-
-    return APICommands.Url("post" + `/${userID}`);
+  public static Get():string {
+    return APICommands.Url("post");
+  }
+  public static GetUser(UserID:number):string {
+    return this.Get()+`/${UserID}`;
   }
 
   public static likePost(PostID: number, UserID: number): string {
@@ -52,8 +52,11 @@ export class UserAPI extends APICommands{
     super();
   }
 
-  public static override Get(UserID:any=""):string{
-    return APICommands.Url("user"+`/${UserID}`);
+  public static Get():string{
+    return APICommands.Url("user");
+  }
+ public static GetUser(UserID:number):string{
+    return this.Get()+`/${UserID}`;
   }
   public static Register():string{
     return this.Get()+"/register";

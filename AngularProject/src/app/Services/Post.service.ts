@@ -11,7 +11,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
   public GetAllPosts(userID:any=""):Observable<Array<IPost>>
   {
-    return this.http.get<Array<IPost>>(PostAPI.Get(userID));
+    return this.http.get<Array<IPost>>(PostAPI.Get());
   }
 
   public likePost(user:{userID:number,postID:number})
