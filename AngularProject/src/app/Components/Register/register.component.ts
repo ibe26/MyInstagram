@@ -3,6 +3,7 @@ import { UntypedFormBuilder, FormControl, FormGroup, Validators, FormBuilder } f
 import { IRegisterDTO, IUserDTO } from 'src/app/Interfaces/IUser';
 import { AuthService } from 'src/app/Services/Auth.service';
 import { RegisterService } from 'src/app/Services/Register.service';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-register',
@@ -34,22 +35,23 @@ export class RegisterComponent implements OnInit {
     return this.RegisterForm.value['nickname'];
   }
 
-  public doesNicknameExist:boolean=false;
+  public nicknameExists:boolean=false;
 
   public checkNickname(){
     this.userService.GetAllUsers().subscribe((users:Array<IUserDTO>)=>{
       if(users.some(user=>user.nickname==this.Nickname))
       {
-        this.doesNicknameExist=true;
+        this.nicknameExists=true;
         return;
       }
-      this.doesNicknameExist=false;
+      this.nicknameExists=false;
     })
   }
   signinSubmit(){
     if(!this.RegisterForm.valid)
     {
-      alert("test");
+      alertify.error("Please provide all the informations needed.");
+      return;
     }
     const user:IRegisterDTO={
       email:this.Email,
