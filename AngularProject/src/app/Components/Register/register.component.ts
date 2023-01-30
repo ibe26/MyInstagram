@@ -17,22 +17,22 @@ export class RegisterComponent implements OnInit {
               private userService:AuthService) { }
 
   ngOnInit(): void {
-    this.RegisterForm=this.formBuilder.group({
+    this.registerForm=this.formBuilder.group({
       email:['',Validators.required],
       password:['',Validators.required],
       nickname:['',Validators.required]
     })
   }
-  public RegisterForm:FormGroup;
+  public registerForm:FormGroup;
 
   private get Email(){
-    return this.RegisterForm.value['email'];
+    return this.registerForm.value['email'];
   }
   private get Password(){
-    return this.RegisterForm.value['password'];
+    return this.registerForm.value['password'];
   }
   private get Nickname(){
-    return this.RegisterForm.value['nickname'];
+    return this.registerForm.value['nickname'];
   }
 
   public nicknameExists:boolean=false;
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
     })
   }
   signinSubmit(){
-    if(!this.RegisterForm.valid)
+    if(!this.registerForm.valid)
     {
       alertify.error("Please provide all the informations needed.");
       return;

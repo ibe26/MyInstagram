@@ -17,9 +17,18 @@ export class AuthService {
   }
 
   public Authorize(User:ILoginDTO):void{
-    this.httpClient.post<IUserToken>(UserAPI.GetToken(),User).subscribe((data:IUserToken)=>{
-      localStorage.setItem('UserLoggedIn',JSON.stringify(data));
+    this.httpClient.post<{token:string}>(UserAPI.GetToken(),User).subscribe((data:{token:string})=>{
+      localStorage.setItem('Token',JSON.stringify(data));
     });
+  }
+
+  public IsAuthorized(UserID:number):boolean{
+    let result:boolean=false;
+    const token:string=(JSON.parse(localStorage.getItem('UserLoggedIn')!) as {token:string}).token
+    this.httpClient.get<{token:string}>(UserAPI.GetUserToken(UserID)).subscribe((data:{token:string})=>{
+      result=token==data.token;
+    });
+    return result;
   }
   public Logout(UserID:number):void{
     this.httpClient.delete(UserAPI.Logout(UserID))
