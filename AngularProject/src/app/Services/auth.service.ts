@@ -24,14 +24,28 @@ export class AuthService {
 
   public IsAuthorized(UserID:number):boolean{
     let result:boolean=false;
-    const token:string=(JSON.parse(localStorage.getItem('UserLoggedIn')!) as {token:string}).token
     this.httpClient.get<{token:string}>(UserAPI.GetUserToken(UserID)).subscribe((data:{token:string})=>{
-      result=token==data.token;
+      console.log(data)
+      result=this.TokenLS==data.token;
     });
     return result;
   }
+
   public Logout(UserID:number):void{
     this.httpClient.delete(UserAPI.Logout(UserID))
+  }
+
+  public get TokenLS():string|null{
+    const Token:{token:string}|null=(JSON.parse(localStorage.getItem('Token')!) as {token:string});
+    if(Token!==null)
+    {
+      return Token.token;
+    }
+    return null;
+  }
+
+  public AllTokens():Observable<Array<IUserToken>>{
+    return this.httpClient.get<Array<IUserToken>>(UserAPI.GetAllTokens());
   }
 }
 

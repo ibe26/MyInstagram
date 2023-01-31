@@ -23,7 +23,7 @@ export interface IRegisterDTO extends ILoginDTO{
 
 export interface IUserToken{
   userID:number,
-  Token:string
+  token:string
 }
 export interface IUWH{
   userID:number,

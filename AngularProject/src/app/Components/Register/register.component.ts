@@ -4,6 +4,7 @@ import { IRegisterDTO, IUserDTO } from 'src/app/Interfaces/IUser';
 import { AuthService } from 'src/app/Services/Auth.service';
 import { RegisterService } from 'src/app/Services/Register.service';
 import * as alertify from 'alertifyjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,13 +15,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,
               private registerService:RegisterService,
-              private userService:AuthService) { }
+              private userService:AuthService,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.registerForm=this.formBuilder.group({
-      email:['',Validators.required],
-      password:['',Validators.required],
-      nickname:['',Validators.required]
+      email:['',[Validators.required,Validators.email]],
+      password:['',[Validators.required,Validators.minLength(6)]],
+      nickname:['',[Validators.required,Validators.minLength(6)]]
     })
   }
   public registerForm:FormGroup;
@@ -60,5 +62,6 @@ export class RegisterComponent implements OnInit {
     }
 
     this.registerService.Register(user);
+    this.router.navigate(['login']);
   }
 }

@@ -58,7 +58,6 @@ export class PostComponent implements OnInit {
 
   public didUserLikePost(): boolean {
 
-    console.log(this.Post.whoLiked)
 
     if (this.Post.whoLiked !== null) {
       if (this.Post.whoLiked.find(user => user.userID === 1) !== undefined) {

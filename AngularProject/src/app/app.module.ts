@@ -18,10 +18,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 
   const routes:Routes=[
-    {path:'Home',component:PostListComponent},
-    {path:'Login',component:LoginComponent},
-    {path:'Register',component:RegisterComponent},
-    {path:'**',redirectTo: 'Home', pathMatch: 'full'},
+    {path:'home',component:PostListComponent},
+    {path:'login',component:LoginComponent},
+    {path:'register',component:RegisterComponent},
+    {path:'**',redirectTo: 'home', pathMatch: 'full'},
 
   ]
 @NgModule({

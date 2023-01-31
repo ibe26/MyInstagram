@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">MyInstagram</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,17 +7,30 @@
     <ul *ngIf="1" class="navbar-nav">
       <div>
       </div>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="Login">Login</a>
-      </li>
-      <li class="nav-item active">
-        <i class="nav-link">|</i>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="Register">Register</a>
-      </li>
+      <ng-content select="#LoggingItems"></ng-content>
 
-
+      <ng-container *ngTemplateOutlet="isAuthorized?LoggedInItems:LoggingItems"
+                    ></ng-container>
     </ul>
   </div>
 </nav>
+<ng-template #LoggingItems>
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="login">Login</a>
+    </li>
+    <li class="nav-item active">
+      <i class="nav-link">|</i>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="register">Register</a>
+    </li>
+</ng-template>
+
+<ng-template #LoggedInItems>
+  <li class="nav-item active">
+    <a class="nav-link" routerLink="profile">Hello {{User.nickname}}</a>
+  </li>
+  <li class="nav-item active">
+    <a class="nav-link" (click)="Logout()">Logout</a>
+  </li>
+</ng-template>
