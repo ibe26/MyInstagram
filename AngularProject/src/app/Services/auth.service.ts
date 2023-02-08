@@ -16,18 +16,17 @@ export class AuthService {
     return this.httpClient.get<Array<IUserDTO>>(UserAPI.Get());
   }
 
-  public Authorize(User:ILoginDTO):void{
-    this.httpClient.post<{token:string}>(UserAPI.GetToken(),User).subscribe((data:{token:string})=>{
-      localStorage.setItem('Token',JSON.stringify(data));
-    });
-  }
+  // public Authorize(User:ILoginDTO):void{
+  //   this.httpClient.post<{token:string}>(UserAPI.GetToken(),User).subscribe((data:{token:string})=>{
+  //     localStorage.setItem('Token',JSON.stringify(data));
+  //   });
+  // }
 
-  public IsAuthorized(UserID:number):boolean{
+  public IsAuthorized():boolean{
     let result:boolean=false;
-    this.httpClient.get<{token:string}>(UserAPI.GetUserToken(UserID)).subscribe((data:{token:string})=>{
-      console.log(data)
-      result=this.TokenLS==data.token;
-    });
+    if(localStorage.getItem('Token')){
+      result=true;
+    }
     return result;
   }
 
@@ -44,9 +43,6 @@ export class AuthService {
     return null;
   }
 
-  public AllTokens():Observable<Array<IUserToken>>{
-    return this.httpClient.get<Array<IUserToken>>(UserAPI.GetAllTokens());
-  }
 }
 
 

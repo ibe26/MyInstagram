@@ -67,10 +67,4 @@ export class UserAPI extends APICommands{
   public static Logout(UserID:number):string{
     return this.Get()+`/logout/${UserID}`;
   }
-  public static GetAllTokens():string{
-    return this.Get()+`/token`;
-  }
-  public static GetUserToken(UserID:number):string{
-    return this.Get()+`/token/${UserID}`;
-  }
 }
