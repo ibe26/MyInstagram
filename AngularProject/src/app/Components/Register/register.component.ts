@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { IRegisterDTO, IUserDTO } from 'src/app/Interfaces/IUser';
-import { AuthService } from 'src/app/Services/Auth.service';
+import { AuthService } from 'src/app/Services/auth.service';
 import { RegisterService } from 'src/app/Services/Register.service';
 import * as alertify from 'alertifyjs';
 import { Router } from '@angular/router';

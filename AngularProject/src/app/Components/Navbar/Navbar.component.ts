@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { IUserDTO, IUserToken } from 'src/app/Interfaces/IUser';
-import { AuthService } from 'src/app/Services/Auth.service';
-import { __values } from 'tslib';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-Navbar',
@@ -11,32 +10,26 @@ import { __values } from 'tslib';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
-  public isAuthorized:boolean;
-  public User:IUserDTO={
-    userID: 0,
-    email: '',
-    nickname: '',
-    posts: []
-  };
+  constructor(private authService:AuthService,private appRef: ApplicationRef) { }
+  public User:string;
 
   ngOnInit() {
     if(this.authService.TokenLS!==null)
     {
-      this.authService.AllTokens().subscribe((users:Array<IUserToken>)=>{
-        const foundToken:IUserToken|undefined=users.find(user=>user.token==this.authService.TokenLS);
-        if(foundToken)
-        {
-          this.isAuthorized=true;
-          this.authService.GetUser(foundToken.userID).subscribe((user:IUserDTO)=>this.User=user);
-        }
-        else this.isAuthorized=false;
-      })
+      this.User=this.authService.TokenLS.nickname;
     }
   }
 
-  public Logout(){
-    console.log(this.User)
+  public LoggedIn(){
+    if(this.authService.TokenLS)
+    {
+      return true;
+    }
+    return false;
   }
+
+  public Logout():void{
+    localStorage.removeItem("Token");
+   }
 
 }

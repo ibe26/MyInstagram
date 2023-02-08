@@ -4,12 +4,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="" style="float: right;" id="navbarNavDropdown">
-    <ul *ngIf="1" class="navbar-nav">
+    <ul class="navbar-nav">
       <div>
       </div>
       <ng-content select="#LoggingItems"></ng-content>
 
-      <ng-container *ngTemplateOutlet="isAuthorized?LoggedInItems:LoggingItems"
+      <ng-container *ngTemplateOutlet="LoggedIn()?LoggedInItems:LoggingItems"
                     ></ng-container>
     </ul>
   </div>
@@ -28,9 +28,9 @@
 
 <ng-template #LoggedInItems>
   <li class="nav-item active">
-    <a class="nav-link" routerLink="profile">Hello {{User.nickname}}</a>
+    <a class="nav-link" routerLink="profile">Hello {{User}}</a>
   </li>
   <li class="nav-item active">
-    <a class="nav-link" (click)="Logout()">Logout</a>
+    <a class="nav-link"  (click)="Logout()">Logout</a>
   </li>
 </ng-template>

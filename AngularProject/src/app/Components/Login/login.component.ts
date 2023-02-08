@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ILoginDTO } from 'src/app/Interfaces/IUser';
-import { AuthService } from 'src/app/Services/Auth.service';
+import { AuthService } from 'src/app/Services/auth.service';
 import * as alertify from 'alertifyjs';
 import { Router } from '@angular/router';
 
@@ -39,7 +39,7 @@ public loginForm:FormGroup;
       email:this.Email,
       password:this.Password
     };
-    this.authService.Authorize(user);
+    this.authService.Login(user).subscribe((data:{nickname:string,token:string})=>localStorage.setItem("Token",JSON.stringify(data)));
     this.router.navigate(['home']);
   }
 }

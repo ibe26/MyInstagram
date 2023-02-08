@@ -16,11 +16,9 @@ export class AuthService {
     return this.httpClient.get<Array<IUserDTO>>(UserAPI.Get());
   }
 
-  // public Authorize(User:ILoginDTO):void{
-  //   this.httpClient.post<{token:string}>(UserAPI.GetToken(),User).subscribe((data:{token:string})=>{
-  //     localStorage.setItem('Token',JSON.stringify(data));
-  //   });
-  // }
+  public Login(User:ILoginDTO):Observable<{nickname:string,token:string}>{
+    return this.httpClient.post<{nickname:string,token:string}>(UserAPI.GetToken(),User);
+  }
 
   public IsAuthorized():boolean{
     let result:boolean=false;
@@ -30,15 +28,13 @@ export class AuthService {
     return result;
   }
 
-  public Logout(UserID:number):void{
-    this.httpClient.delete(UserAPI.Logout(UserID))
-  }
 
-  public get TokenLS():string|null{
-    const Token:{token:string}|null=(JSON.parse(localStorage.getItem('Token')!) as {token:string});
-    if(Token!==null)
+
+  public get TokenLS():{nickname:string,token:string}|null{
+    const Token=JSON.parse(localStorage.getItem("Token")!) as {nickname:string,token:string};
+    if(Token)
     {
-      return Token.token;
+      return Token;
     }
     return null;
   }
